@@ -8,11 +8,11 @@ public class BlockHandler : MonoBehaviour {
 	public GameObject ghostHolder;
 	public LayerData dirtLayer;
 
-	public List<GameObject> initBlocks;
+	public Transform map;
 
 	private void Awake() {
 		//set the init block that are already in the world
-		foreach(GameObject block in initBlocks){
+		foreach(Transform block in map){
 			setBlock(block.GetComponent<Block>());
 		}
 	}
@@ -69,9 +69,9 @@ public class BlockHandler : MonoBehaviour {
 	}
 
 	public void setBlock(Block block){
-		int depth = block.GetComponent<Block>().depth; 
+		int depth = block.depth; 
 		if(depth >= 0 && depth <= 100){
-			
+			block.blockData = dirtLayer.GetBlockData();
 		}
 	}
 
