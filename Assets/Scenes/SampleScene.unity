@@ -165,8 +165,9 @@ MonoBehaviour:
   blockPrefab: {fileID: 1545359984996408, guid: 857ba5dfc9a00384288cc4ab90ee565e,
     type: 2}
   ghostHolder: {fileID: 1356628982}
-  dirtLayer: {fileID: 11400000, guid: da853ca6dcd650b49af1674fc5e737df, type: 2}
   map: {fileID: 60780708}
+  layerList:
+  - {fileID: 11400000, guid: da853ca6dcd650b49af1674fc5e737df, type: 2}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0

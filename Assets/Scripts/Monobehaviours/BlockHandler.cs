@@ -6,12 +6,11 @@ public class BlockHandler : MonoBehaviour {
 
 	public GameObject blockPrefab;
 	public GameObject ghostHolder;
-	public LayerData dirtLayer;
-
 	public Transform map;
+	public List<LayerData> layerList;
 
 	private void Awake() {
-		//set the init block that are already in the world
+		//set the init blocks that are already in the world map
 		foreach(Transform block in map){
 			setBlock(block.GetComponent<Block>());
 		}
@@ -49,7 +48,9 @@ public class BlockHandler : MonoBehaviour {
 		GameObject clone = Instantiate(blockPrefab, block.transform.position + direction * block.transform.lossyScale.x, Quaternion.identity, transform);
 		Block cloneBlock = clone.GetComponent<Block>();
 		cloneBlock.depth += block.depth + (int)-direction.y;
+		setBlock(clone.GetComponent<Block>());
 		clone.name = blockPrefab.name;
+		
 	}
 
 	public bool getBlock(Transform block, Vector3 direction){
@@ -70,8 +71,9 @@ public class BlockHandler : MonoBehaviour {
 
 	public void setBlock(Block block){
 		int depth = block.depth; 
-		if(depth >= 0 && depth <= 100){
-			block.blockData = dirtLayer.GetBlockData();
+		foreach(LayerData layer in layerList){
+			if(layer.depthCheck(depth))
+				block.blockData = layer.GetBlockData();
 		}
 	}
 

@@ -6,6 +6,7 @@ using UnityEngine;
 public class LayerData : ScriptableObject {
 
 	public BlockData layerBlock;
+	public int min, max; 
 	public List<BlockList> blocks;
 
 	public BlockData GetBlockData(){
@@ -14,8 +15,13 @@ public class LayerData : ScriptableObject {
 			if(randomNum <= block.spawnChance)
 				return block.blockData;
 		}
-
 		return layerBlock;
+	}
+
+	public bool depthCheck(int depth){
+		if(depth >= min && depth <= max)
+			return true;
+		return false;
 	}
 }
 
@@ -24,4 +30,5 @@ public class BlockList{
 	public BlockData blockData;
 	[Range(0,100)]
 	public float spawnChance;
+
 }

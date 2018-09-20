@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Name: DirtLayer
   m_EditorClassIdentifier: 
   layerBlock: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
-  blocks: []
+  min: 0
+  max: 0
+  blocks:
+  - blockData: {fileID: 11400000, guid: 541aa646c024f924d9be33891b7ebb79, type: 2}
+    spawnChance: 15
