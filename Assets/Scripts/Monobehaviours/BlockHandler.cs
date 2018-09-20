@@ -12,17 +12,19 @@ public class BlockHandler : MonoBehaviour {
 	private void Awake() {
 		//set the init blocks that are already in the world map
 		foreach(Transform block in map){
-			setBlock(block.GetComponent<Block>());
+			Block blockScript = block.GetComponent<Block>();
+			blockScript.blockData = GetBlockData(blockScript.depth);
+			blockScript.setBlock();
 		}
 	}
 
 	public void onMouseDown(Block block) {
-		bool top = getBlock(block.transform, block.transform.up);
-		bool bottom = getBlock(block.transform, -block.transform.up);
-		bool right = getBlock(block.transform, block.transform.right);
-		bool left = getBlock(block.transform, -block.transform.right);
-		bool forward = getBlock(block.transform, block.transform.forward);
-		bool backward = getBlock(block.transform, -block.transform.forward);
+		bool top = BlockHit(block.transform, block.transform.up);
+		bool bottom = BlockHit(block.transform, -block.transform.up);
+		bool right = BlockHit(block.transform, block.transform.right);
+		bool left = BlockHit(block.transform, -block.transform.right);
+		bool forward = BlockHit(block.transform, block.transform.forward);
+		bool backward = BlockHit(block.transform, -block.transform.forward);
 
 		if(!top)
 			InstantiateBlock(block, block.transform.up);
@@ -48,33 +50,29 @@ public class BlockHandler : MonoBehaviour {
 		GameObject clone = Instantiate(blockPrefab, block.transform.position + direction * block.transform.lossyScale.x, Quaternion.identity, transform);
 		Block cloneBlock = clone.GetComponent<Block>();
 		cloneBlock.depth += block.depth + (int)-direction.y;
-		setBlock(clone.GetComponent<Block>());
-		clone.name = blockPrefab.name;
-		
+		cloneBlock.blockData = GetBlockData(cloneBlock.depth);
+		cloneBlock.setBlock();
 	}
 
-	public bool getBlock(Transform block, Vector3 direction){
+	public bool BlockHit(Transform block, Vector3 direction){
 		Ray ray = new Ray(block.position, direction);
 		RaycastHit hitInfo;
 		
         if (Physics.Raycast(ray, out hitInfo, block.lossyScale.x)){
 			Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 2f);
-			if(hitInfo.transform.name.Equals("Block"))
-				return true;
-			else if(hitInfo.transform.name.Contains("Ghost"))
-				return true;
-			else if(hitInfo.transform.name.Equals("Player"))
+			if(hitInfo.transform.tag.Equals("Block") || hitInfo.transform.tag.Equals("Player"))
 				return true;
 		}
 		return false;
 	}
 
-	public void setBlock(Block block){
-		int depth = block.depth; 
+	public BlockData GetBlockData(int depth){
 		foreach(LayerData layer in layerList){
-			if(layer.depthCheck(depth))
-				block.blockData = layer.GetBlockData();
+			if(layer.depthCheck(depth)){
+				return layer.GetBlockData(); 
+			}
 		}
+		return null;
 	}
 
 }

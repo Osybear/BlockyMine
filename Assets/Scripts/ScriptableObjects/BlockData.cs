@@ -4,6 +4,6 @@ using UnityEngine;
 
 [CreateAssetMenu]
 public class BlockData : ScriptableObject {
-
+	
 	public Material material;
 }

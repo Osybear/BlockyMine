@@ -7,7 +7,8 @@ public class Block : MonoBehaviour {
 	public BlockData blockData;
 	public int depth;
 
-	private void Start() {
+	public void setBlock(){
 		GetComponent<Renderer>().material = blockData.material;
+		name = blockData.name;
 	}
 }

@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
 			RaycastHit hitInfo;
         	if (Physics.Raycast(ray, out hitInfo, float.MaxValue, layerMask))
 			{
-				if(hitInfo.transform.name.Equals("Block")){
+				if(hitInfo.transform.tag.Equals("Block")){
 					blockHandler.onMouseDown(hitInfo.transform.gameObject.GetComponent<Block>());
 				}
 			}
