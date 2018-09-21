@@ -7,10 +7,10 @@ public class LayerData : ScriptableObject {
 
 	public BlockData layerBlock;
 	public int min, max; 
-	public List<BlockList> blocks;
+	public List<SpawnableBlocks> spawnable;
 
 	public BlockData GetBlockData(){
-		foreach(BlockList block in blocks){
+		foreach(SpawnableBlocks block in spawnable){
 			float randomNum = Random.Range(0, 100f);
 			if(randomNum <= block.spawnChance)
 				return block.blockData;
@@ -18,7 +18,7 @@ public class LayerData : ScriptableObject {
 		return layerBlock;
 	}
 
-	public bool depthCheck(int depth){
+	public bool DepthCheck(int depth){
 		if(depth >= min && depth <= max)
 			return true;
 		return false;
@@ -26,9 +26,9 @@ public class LayerData : ScriptableObject {
 }
 
 [System.Serializable]
-public class BlockList{
+public class SpawnableBlocks{
 	public BlockData blockData;
-	[Range(0,100)]
+	[Range(0,100f)]
 	public float spawnChance;
 
 }

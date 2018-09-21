@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BlockHandler : MonoBehaviour {
 
+	public InventoryData inventory;
 	public GameObject blockPrefab;
 	public GameObject ghostHolder;
 	public Transform map;
 	public List<LayerData> layerList;
-
+	
 	private void Awake() {
 		//set the init blocks that are already in the world map
 		foreach(Transform block in map){
@@ -43,6 +44,7 @@ public class BlockHandler : MonoBehaviour {
 		collider.center = block.transform.position;
 		collider.size = block.transform.lossyScale;
 		
+		inventory.IncrementCount(block.blockData, 1);
 		Destroy(block.gameObject);
 	}	
 
@@ -68,7 +70,7 @@ public class BlockHandler : MonoBehaviour {
 
 	public BlockData GetBlockData(int depth){
 		foreach(LayerData layer in layerList){
-			if(layer.depthCheck(depth)){
+			if(layer.DepthCheck(depth)){
 				return layer.GetBlockData(); 
 			}
 		}
