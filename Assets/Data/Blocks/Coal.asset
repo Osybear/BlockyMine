@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 4c787e7da9d5acd45807d66d741b6ee0, type: 2}
+  value: 5

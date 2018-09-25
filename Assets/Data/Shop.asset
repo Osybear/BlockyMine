@@ -8,14 +8,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 291c6fa11e41f8d4595d9717a892590a, type: 3}
-  m_Name: Inventory
+  m_Script: {fileID: 11500000, guid: 400f8076880b9e24e8bc3739988f6313, type: 3}
+  m_Name: Shop
   m_EditorClassIdentifier: 
-  tempBlockData: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
+  inventory: {fileID: 11400000, guid: 0bf5f5bf37808844ab188bd2a8c5c4ed, type: 2}
+  playerMoney: 200
+  testBlockData: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11400000, guid: 634c5e598abd00242a166d90bdec0f6c, type: 2}
+      - m_Target: {fileID: 11400000, guid: 40fe09e4ad3e41548846681b48bb8150, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
@@ -28,4 +30,3 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  blockCountList: []
