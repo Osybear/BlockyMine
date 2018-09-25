@@ -11,6 +11,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291c6fa11e41f8d4595d9717a892590a, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
+  tempBlockData: {fileID: 0}
+  onIncrementCount:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 634c5e598abd00242a166d90bdec0f6c, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   blockCountList:
   - blockData: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
-    count: 144
+    count: 277
+  - blockData: {fileID: 11400000, guid: bcc06c30601793c4881d24987debd090, type: 2}
+    count: 83

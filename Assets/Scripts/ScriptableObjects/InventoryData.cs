@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 [CreateAssetMenu]
 public class InventoryData : ScriptableObject {
 
+	public BlockData tempBlockData;
+	public UnityEvent onIncrementCount;
 	public List<BlockCount> blockCountList;
 
 	public void IncrementCount(BlockData blockData, int amount){
@@ -14,6 +17,10 @@ public class InventoryData : ScriptableObject {
 			blockCount.count += amount;
 		else
 			blockCountList.Add(new BlockCount(blockData));
+
+		//event stuff
+		tempBlockData = blockData;
+		onIncrementCount.Invoke();
 	}
 
 	public BlockCount GetBlockCount(BlockData blockData){
@@ -25,7 +32,7 @@ public class InventoryData : ScriptableObject {
 	}	
 }
 
-[System.Serializable] 
+[Serializable] 
 public class BlockCount : IEquatable<BlockCount>{
 	public BlockData blockData;
 	public int count = 1;
