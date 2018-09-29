@@ -27,7 +27,7 @@ public class DisplayData : MonoBehaviour {
 	}
 
 	public void UpdateBlockCount(){
-		int index = blockTextList.IndexOf(new BlockText(new BlockCount(inventory.tempBlockData)));
+		int index = blockTextList.IndexOf(new BlockText(new BlockCount(inventory.changedBlockCount)));
 		if(index != -1){
 			BlockText blockText = blockTextList[index];
 

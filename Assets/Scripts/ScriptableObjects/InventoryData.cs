@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [CreateAssetMenu]
 public class InventoryData : ScriptableObject {
 
-	public BlockData tempBlockData;
+	public BlockData changedBlockCount;
 	public UnityEvent onValueChanged;
 	public List<BlockCount> blockCountList;
 
@@ -21,8 +21,8 @@ public class InventoryData : ScriptableObject {
 		else
 			blockCountList.Add(new BlockCount(blockData));
 			
-		//event raising below
-		tempBlockData = blockData;
+		//data setter and event raising below
+		changedBlockCount = blockData;
 		onValueChanged.Invoke();
 	}
 

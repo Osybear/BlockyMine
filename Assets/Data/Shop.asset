@@ -12,12 +12,23 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: 
   inventory: {fileID: 11400000, guid: 0bf5f5bf37808844ab188bd2a8c5c4ed, type: 2}
-  playerMoney: 200
+  playerMoney: 20
   testBlockData: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 40fe09e4ad3e41548846681b48bb8150, type: 2}
+        m_MethodName: Raise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 634c5e598abd00242a166d90bdec0f6c, type: 2}
         m_MethodName: Raise
         m_Mode: 1
         m_Arguments:
