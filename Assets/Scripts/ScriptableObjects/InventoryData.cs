@@ -7,11 +7,13 @@ using UnityEngine.Events;
 [CreateAssetMenu]
 public class InventoryData : ScriptableObject {
 
-	public BlockData changedBlockCount;
-	public UnityEvent onValueChanged;
+	public float money = 0;
+	public BlockData tempBlockData; // when ChangeCount() is called variable is set with data that was changed.
+	public UnityEvent onChangeBlockCount;
+	public UnityEvent onChangeMoney;
 	public List<BlockCount> blockCountList;
 
-	public void ChangeCount(BlockData blockData, int amount){
+	public void ChangeBlockCount(BlockData blockData, int amount){
 		BlockCount blockCount = GetBlockCount(blockData);
 		if(blockCount != null){
 			blockCount.count += amount;
@@ -22,8 +24,13 @@ public class InventoryData : ScriptableObject {
 			blockCountList.Add(new BlockCount(blockData));
 			
 		//data setter and event raising below
-		changedBlockCount = blockData;
-		onValueChanged.Invoke();
+		tempBlockData = blockData;
+		onChangeBlockCount.Invoke();
+	}
+
+	public void ChangeMoney(float amount){
+		money += amount;
+		onChangeMoney.Invoke();
 	}
 
 	public BlockCount GetBlockCount(BlockData blockData){

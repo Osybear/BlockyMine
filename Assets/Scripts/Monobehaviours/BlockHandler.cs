@@ -44,7 +44,7 @@ public class BlockHandler : MonoBehaviour {
 		collider.center = block.transform.position;
 		collider.size = block.transform.lossyScale;
 		
-		inventory.ChangeCount(block.blockData, 1);
+		inventory.ChangeBlockCount(block.blockData, 1);
 		Destroy(block.gameObject);
 	}	
 

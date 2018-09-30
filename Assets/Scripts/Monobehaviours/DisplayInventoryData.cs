@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class DisplayData : MonoBehaviour {
+public class DisplayInventoryData : MonoBehaviour {
 
 	public InventoryData inventory;
-	public ShopData shop;
-	public Text moneyText;
 	public Transform parent;
+	public Text moneyText;
 	public GameObject blockTextPrefab;
 	public List<BlockText> blockTextList;
 
@@ -19,15 +18,11 @@ public class DisplayData : MonoBehaviour {
 			GameObject clone = Instantiate(blockTextPrefab, parent);
 			blockTextList.Add(new BlockText(blockCount, clone.GetComponent<Text>()));
 		}
-		UpdatePlayerMoney();
-	}
-
-	public void UpdatePlayerMoney(){
-		moneyText.text = "$" + shop.playerMoney;
+		UpdateMoneyText();
 	}
 
 	public void UpdateBlockCount(){
-		int index = blockTextList.IndexOf(new BlockText(new BlockCount(inventory.changedBlockCount)));
+		int index = blockTextList.IndexOf(new BlockText(new BlockCount(inventory.tempBlockData)));
 		if(index != -1){
 			BlockText blockText = blockTextList[index];
 
@@ -42,6 +37,9 @@ public class DisplayData : MonoBehaviour {
 		}
 	}
 
+	public void UpdateMoneyText(){
+		moneyText.text = "$" + inventory.money;
+	}
 }
 
 [Serializable]

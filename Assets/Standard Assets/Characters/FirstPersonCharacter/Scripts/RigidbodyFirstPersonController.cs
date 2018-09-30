@@ -9,9 +9,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
     public class RigidbodyFirstPersonController : MonoBehaviour
     {
         [Serializable]
+        public class AddedSettings
+        {
+            public LayerMask layerMask; // mask for raycasts // ignore unchecked layers
+        }
+
+        [Serializable]
         public class MovementSettings
         {
-            public LayerMask layerMask;
             public float ForwardSpeed = 8.0f;   // Speed when walking forward
             public float BackwardSpeed = 4.0f;  // Speed when walking backwards
             public float StrafeSpeed = 4.0f;    // Speed when walking sideways
@@ -69,6 +74,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [Serializable]
         public class AdvancedSettings
         {
+
             public float groundCheckDistance = 0.01f; // distance for checking if the controller is grounded ( 0.01f seems to work best for this )
             public float stickToGroundHelperDistance = 0.5f; // stops the character
             public float slowDownRate = 20f; // rate at which the controller comes to a stop when there is no input
@@ -79,6 +85,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
 
         public Camera cam;
+        public AddedSettings addedSettings = new AddedSettings();
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
@@ -89,7 +96,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
-
 
         public Vector3 Velocity
         {
@@ -200,7 +206,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             RaycastHit hitInfo;
             if (Physics.SphereCast(transform.position, m_Capsule.radius * (1.0f - advancedSettings.shellOffset), Vector3.down, out hitInfo,
                                    ((m_Capsule.height/2f) - m_Capsule.radius) +
-                                   advancedSettings.stickToGroundHelperDistance, movementSettings.layerMask, QueryTriggerInteraction.Ignore))
+                                   advancedSettings.stickToGroundHelperDistance, addedSettings.layerMask, QueryTriggerInteraction.Ignore))
             {
                 if (Mathf.Abs(Vector3.Angle(hitInfo.normal, Vector3.up)) < 85f)
                 {
@@ -247,7 +253,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_PreviouslyGrounded = m_IsGrounded;
             RaycastHit hitInfo;
             if (Physics.SphereCast(transform.position, m_Capsule.radius * (1.0f - advancedSettings.shellOffset), Vector3.down, out hitInfo,
-                                   ((m_Capsule.height/2f) - m_Capsule.radius) + advancedSettings.groundCheckDistance, movementSettings.layerMask, QueryTriggerInteraction.Ignore))
+                                   ((m_Capsule.height/2f) - m_Capsule.radius) + advancedSettings.groundCheckDistance, addedSettings.layerMask, QueryTriggerInteraction.Ignore))
             {
                 m_IsGrounded = true;
                 m_GroundContactNormal = hitInfo.normal;
@@ -261,6 +267,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
             {
                 m_Jumping = false;
             }
+        }
+
+        //helper funtion to set lock cursor of MouseLook script
+        public void SetCursorLock(bool enabled){
+            mouseLook.SetCursorLock(enabled);
         }
     }
 }
