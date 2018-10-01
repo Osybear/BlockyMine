@@ -7,4 +7,5 @@ public class BlockData : ScriptableObject {
 	
 	public Material material;
 	public float value;
+	public int hitPoints;
 }

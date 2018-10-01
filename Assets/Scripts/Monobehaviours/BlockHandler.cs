@@ -6,20 +6,17 @@ public class BlockHandler : MonoBehaviour {
 
 	public InventoryData inventory;
 	public GameObject blockPrefab;
-	public GameObject ghostHolder;
-	public Transform map;
 	public List<LayerData> layerList;
 	
 	private void Awake() {
-		//set the init blocks that are already in the world map
-		foreach(Transform block in map){
+		foreach(Transform block in transform){
 			Block blockScript = block.GetComponent<Block>();
 			blockScript.blockData = GetBlockData(blockScript.depth);
 			blockScript.setBlock();
-		}
+		}	
 	}
 
-	public void onMouseDown(Block block) {
+	public void onBlockDeath(Block block) {
 		bool top = BlockHit(block.transform, block.transform.up);
 		bool bottom = BlockHit(block.transform, -block.transform.up);
 		bool right = BlockHit(block.transform, block.transform.right);
@@ -40,7 +37,7 @@ public class BlockHandler : MonoBehaviour {
 		if(!backward)
 			InstantiateBlock(block, -block.transform.forward);
 		
-		BoxCollider collider = ghostHolder.AddComponent(typeof(BoxCollider)) as BoxCollider;
+		BoxCollider collider = gameObject.AddComponent(typeof(BoxCollider)) as BoxCollider;
 		collider.center = block.transform.position;
 		collider.size = block.transform.lossyScale;
 		
@@ -51,9 +48,10 @@ public class BlockHandler : MonoBehaviour {
 	public void InstantiateBlock(Block block, Vector3 direction){
 		GameObject clone = Instantiate(blockPrefab, block.transform.position + direction * block.transform.lossyScale.x, Quaternion.identity, transform);
 		Block cloneBlock = clone.GetComponent<Block>();
-		cloneBlock.depth += block.depth + (int)-direction.y;
+		cloneBlock.depth = block.depth + (int)-direction.y;
 		cloneBlock.blockData = GetBlockData(cloneBlock.depth);
 		cloneBlock.setBlock();
+		cloneBlock.blockHandler = this;
 	}
 
 	public bool BlockHit(Transform block, Vector3 direction){
@@ -62,7 +60,7 @@ public class BlockHandler : MonoBehaviour {
 		
         if (Physics.Raycast(ray, out hitInfo, block.lossyScale.x)){
 			Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 2f);
-			if(hitInfo.transform.tag.Equals("Block") || hitInfo.transform.tag.Equals("Player"))
+			if(hitInfo.transform.tag.Contains("Block") || hitInfo.transform.tag.Equals("Player"))
 				return true;
 		}
 		return false;
@@ -76,5 +74,4 @@ public class BlockHandler : MonoBehaviour {
 		}
 		return null;
 	}
-
 }

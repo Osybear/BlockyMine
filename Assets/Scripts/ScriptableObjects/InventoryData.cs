@@ -7,7 +7,7 @@ using UnityEngine.Events;
 [CreateAssetMenu]
 public class InventoryData : ScriptableObject {
 
-	public float money = 0;
+	public float money;
 	public BlockData tempBlockData; // when ChangeCount() is called variable is set with data that was changed.
 	public UnityEvent onChangeBlockCount;
 	public UnityEvent onChangeMoney;
@@ -41,7 +41,9 @@ public class InventoryData : ScriptableObject {
 			return null;
 	}
 
+	//resets data for runtime testing purposes. otherwise changes will persist
 	private void OnEnable() {
+		money = 0;
 		blockCountList = new List<BlockCount>();
 	}	
 }

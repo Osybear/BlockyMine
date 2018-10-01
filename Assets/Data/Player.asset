@@ -8,9 +8,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10845629ff0aae04d935e3ec6fc271f4, type: 3}
-  m_Name: Dirt
+  m_Script: {fileID: 11500000, guid: 0d4dcfae99d976e4f987a7dfe96f37d1, type: 3}
+  m_Name: Player
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 04dc38bd195f98e4cac5e43be389ff0d, type: 2}
-  value: 1
-  hitPoints: 5
+  interactDistance: 5
+  damage: 1
