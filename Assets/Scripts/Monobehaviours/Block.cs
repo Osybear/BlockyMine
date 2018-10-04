@@ -7,8 +7,8 @@ public class Block : MonoBehaviour {
 	public BlockHandler blockHandler;
 	public BlockData blockData;
 	public int depth;
-	public int hitPoints;
-	public int expPoints;
+	public float hitPoints;
+	public float expPoints;
 	
 	public void setBlock() {
 		GetComponent<Renderer>().material = blockData.material;
@@ -17,7 +17,7 @@ public class Block : MonoBehaviour {
 		this.expPoints = blockData.expValue;
 	}
 
-	public void DamageBlock(int amount){
+	public void DamageBlock(float amount){
 		if(hitPoints - amount <= 0)
 			blockHandler.onBlockDeath(this);
 		else

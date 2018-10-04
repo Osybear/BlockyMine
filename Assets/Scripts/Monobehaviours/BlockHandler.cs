@@ -18,7 +18,7 @@ public class BlockHandler : MonoBehaviour {
 	}
 
 	public void onBlockDeath(Block block) {
-		player.GainExp(block.expPoints);
+		player.UpdateExp(block.expPoints);
 
 		bool top = BlockHit(block.transform, block.transform.up);
 		bool bottom = BlockHit(block.transform, -block.transform.up);

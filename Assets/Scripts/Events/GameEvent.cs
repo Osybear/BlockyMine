@@ -12,12 +12,11 @@ namespace RoboRyanTron.Unite2017.Events
 {
     [CreateAssetMenu]
     public class GameEvent : ScriptableObject
-    {
+    {        
         /// <summary>
         /// The list of listeners that this event will notify if it is raised.
-        /// </summary>
-        private readonly List<GameEventListener> eventListeners = 
-            new List<GameEventListener>();
+        /// </summary>  
+        private readonly List<GameEventListener> eventListeners = new List<GameEventListener>();
 
         public void Raise()
         {
@@ -26,7 +25,7 @@ namespace RoboRyanTron.Unite2017.Events
         }
 
         public void RegisterListener(GameEventListener listener)
-        {
+        {   
             if (!eventListeners.Contains(listener))
                 eventListeners.Add(listener);
         }

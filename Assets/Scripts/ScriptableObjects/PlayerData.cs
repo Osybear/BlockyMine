@@ -7,9 +7,7 @@ using UnityEngine.Events;
 public class PlayerData : ScriptableObject {
 
 	public float interactDistance;
-	public int strength;
-	public UnityEvent onUpdateExp;
-    public UnityEvent onLevelUp;
+	public float strength;
 
     //http://wiki.unity3d.com/index.php/LevelUp
 	//current level
@@ -23,6 +21,9 @@ public class PlayerData : ScriptableObject {
     //modifier that increases needed exp each level
     public float expMod;
 	
+    public UnityEvent onUpdateExp;
+    public UnityEvent onLevelUp;
+    
     private void OnEnable() {
         curLevel = 0;
         currExp = 0;
@@ -31,7 +32,15 @@ public class PlayerData : ScriptableObject {
         strength = 1;
     }
 
-    public void GainExp(int amount)
+    public void UpdateID(float amount){
+        interactDistance += amount;
+    }
+
+    public void UpdateStrength(float amount){
+        strength += amount;
+    }
+
+    public void UpdateExp(float amount)
     {
         currExp += amount;
         if(currExp >= expLeft)
