@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291c6fa11e41f8d4595d9717a892590a, type: 3}
   m_Name: Inventory
   m_EditorClassIdentifier: 
-  money: 14
+  money: 0
   tempBlockData: {fileID: 11400000, guid: 9c94ac9566971b54cb30ba259f49fbfb, type: 2}
-  onChangeBlockCount:
+  onUpdateBlockCount:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 634c5e598abd00242a166d90bdec0f6c, type: 2}
@@ -29,7 +29,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onChangeMoney:
+  onUpdateMoney:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 40fe09e4ad3e41548846681b48bb8150, type: 2}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BlockHandler : MonoBehaviour {
 
+	public PlayerData player;
 	public InventoryData inventory;
 	public GameObject blockPrefab;
 	public List<LayerData> layerList;
@@ -17,6 +18,8 @@ public class BlockHandler : MonoBehaviour {
 	}
 
 	public void onBlockDeath(Block block) {
+		player.GainExp(block.expPoints);
+
 		bool top = BlockHit(block.transform, block.transform.up);
 		bool bottom = BlockHit(block.transform, -block.transform.up);
 		bool right = BlockHit(block.transform, block.transform.right);
@@ -41,7 +44,7 @@ public class BlockHandler : MonoBehaviour {
 		collider.center = block.transform.position;
 		collider.size = block.transform.lossyScale;
 		
-		inventory.ChangeBlockCount(block.blockData, 1);
+		inventory.UpdateBlockCount(block.blockData, 1);
 		Destroy(block.gameObject);
 	}	
 

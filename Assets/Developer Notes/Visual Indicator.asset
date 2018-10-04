@@ -8,10 +8,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10845629ff0aae04d935e3ec6fc271f4, type: 3}
-  m_Name: Coal
+  m_Script: {fileID: 11500000, guid: 20b7b52c5e56d6146940787648d21f83, type: 3}
+  m_Name: Visual Indicator
   m_EditorClassIdentifier: 
-  material: {fileID: 2100000, guid: 4c787e7da9d5acd45807d66d741b6ee0, type: 2}
-  moneyValue: 5
-  hitPoints: 10
-  expValue: 10
+  note: 'No visual indicator that the block is breaking down. No visual indicator
+    of what the player is selecting
+
+
+'

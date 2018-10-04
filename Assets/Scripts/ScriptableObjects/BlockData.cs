@@ -6,6 +6,7 @@ using UnityEngine;
 public class BlockData : ScriptableObject {
 	
 	public Material material;
-	public float value;
+	public float moneyValue;
 	public int hitPoints;
+	public int expValue;
 }

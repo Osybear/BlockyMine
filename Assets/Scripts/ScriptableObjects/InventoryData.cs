@@ -9,11 +9,17 @@ public class InventoryData : ScriptableObject {
 
 	public float money;
 	public BlockData tempBlockData; // when ChangeCount() is called variable is set with data that was changed.
-	public UnityEvent onChangeBlockCount;
-	public UnityEvent onChangeMoney;
+	public UnityEvent onUpdateBlockCount;
+	public UnityEvent onUpdateMoney;
 	public List<BlockCount> blockCountList;
+	
+	//resets data for runtime testing purposes. otherwise changes will persist
+	private void OnEnable() {
+		money = 0;
+		blockCountList = new List<BlockCount>();
+	}
 
-	public void ChangeBlockCount(BlockData blockData, int amount){
+	public void UpdateBlockCount(BlockData blockData, int amount){
 		BlockCount blockCount = GetBlockCount(blockData);
 		if(blockCount != null){
 			blockCount.count += amount;
@@ -25,12 +31,12 @@ public class InventoryData : ScriptableObject {
 			
 		//data setter and event raising below
 		tempBlockData = blockData;
-		onChangeBlockCount.Invoke();
+		onUpdateBlockCount.Invoke();
 	}
 
-	public void ChangeMoney(float amount){
+	public void UpdateMoney(float amount){
 		money += amount;
-		onChangeMoney.Invoke();
+		onUpdateMoney.Invoke();
 	}
 
 	public BlockCount GetBlockCount(BlockData blockData){
@@ -41,11 +47,7 @@ public class InventoryData : ScriptableObject {
 			return null;
 	}
 
-	//resets data for runtime testing purposes. otherwise changes will persist
-	private void OnEnable() {
-		money = 0;
-		blockCountList = new List<BlockCount>();
-	}	
+	
 }
 
 [Serializable] 

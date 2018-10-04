@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Dirt
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 04dc38bd195f98e4cac5e43be389ff0d, type: 2}
-  value: 1
+  moneyValue: 1
   hitPoints: 5
+  expValue: 5

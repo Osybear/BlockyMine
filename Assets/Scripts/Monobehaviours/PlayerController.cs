@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 				Debug.DrawLine(ray.origin, hitInfo.point, Color.red, 3f);
 				if(hitInfo.transform.tag.Equals("Block")){
 					Block block = hitInfo.transform.gameObject.GetComponent<Block>();
-					block.DamageBlock(playerData.damage);
+					block.DamageBlock(playerData.strength);
 				}
 			}
 		}
