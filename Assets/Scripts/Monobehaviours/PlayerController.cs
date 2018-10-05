@@ -8,8 +8,11 @@ public class PlayerController : MonoBehaviour {
 	public LayerMask layerMask;
 	public Camera mainCamera;
 
+	public float nextFire;
+
 	void Update () {
-		if(Input.GetMouseButtonDown(0)){
+		if(Input.GetMouseButton(0) && Time.time > nextFire){
+			nextFire = Time.time + playerData.fireRate;
 			Ray ray = new Ray(mainCamera.transform.position, mainCamera.transform.forward);
 			RaycastHit hitInfo;
 

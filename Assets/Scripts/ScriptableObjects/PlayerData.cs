@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu]
 public class PlayerData : ScriptableObject {
 
+    public float fireRate;
 	public float interactDistance;
 	public float strength;
 
@@ -28,7 +29,7 @@ public class PlayerData : ScriptableObject {
         curLevel = 0;
         currExp = 0;
         expLeft = expBase;
-        interactDistance = 25;  
+        interactDistance = float.MaxValue;  
         strength = 1;
     }
 
