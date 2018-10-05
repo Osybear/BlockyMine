@@ -10,24 +10,27 @@ public class ShopHandler : MonoBehaviour {
 	public InventoryData inventory;
 	public PlayerData player;
 	public GameObject holder;
+	public GameObject buyHolder;
+	public GameObject sellHolder;
 	public InputField nameField;
 	public InputField amountField;
-	public List<BlockData> blockDataList;
-	public UnityEvent onOpenShop;
-	public UnityEvent onCloseShop;
+	public List<BlockData> blockDataList; // list of blocks the player can sell
+	public GameEvent onEnablePlayer;
+	public GameEvent onDisablePlayer;
 
 	private void Start() {
 		holder.SetActive(false);	
+		sellHolder.SetActive(false);
 	}
 
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.I) && !nameField.isFocused && !amountField.isFocused){
 			if(holder.activeInHierarchy){
 				holder.SetActive(false);
-				onCloseShop.Invoke();
+				onEnablePlayer.Raise();
 			}else{
 				holder.SetActive(true);
-				onOpenShop.Invoke();
+				onDisablePlayer.Raise();
 			}
 		}	
 	}
@@ -59,5 +62,21 @@ public class ShopHandler : MonoBehaviour {
 				return blockData;
 		}
 		return null;
+	}
+
+	//decrease firerate by 5% for $50
+	public void BuySpeed(){
+		if(inventory.money >= 50){
+			inventory.UpdateMoney(-50);
+			player.UpdateFireRate(-player.fireRate * .05f);
+		}
+	}
+
+	//increase strength by 5% for $50
+	public void BuyStrength(){
+		if(inventory.money >= 50){
+			inventory.UpdateMoney(-50);
+			player.UpdateStrength(player.strength * .05f);
+		}
 	}
 }

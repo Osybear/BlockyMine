@@ -22,8 +22,8 @@ public class PlayerData : ScriptableObject {
     //modifier that increases needed exp each level
     public float expMod;
 	
-    public UnityEvent onUpdateExp;
-    public UnityEvent onLevelUp;
+    public GameEvent onUpdateExp;
+    public GameEvent onLevelUp;
     
     private void OnEnable() {
         curLevel = 0;
@@ -31,6 +31,7 @@ public class PlayerData : ScriptableObject {
         expLeft = expBase;
         interactDistance = float.MaxValue;  
         strength = 1;
+        fireRate = 1;
     }
 
     public void UpdateID(float amount){
@@ -41,12 +42,16 @@ public class PlayerData : ScriptableObject {
         strength += amount;
     }
 
+    public void UpdateFireRate(float amount){
+        fireRate += amount;
+    }
+
     public void UpdateExp(float amount)
     {
         currExp += amount;
         if(currExp >= expLeft)
             LevelUp();
-		onUpdateExp.Invoke();
+		onUpdateExp.Raise();
     }
 
     void LevelUp()
@@ -54,6 +59,6 @@ public class PlayerData : ScriptableObject {
         currExp -= expLeft;
         curLevel++;
 		expLeft = expLeft + (expLeft * expMod);
-        onLevelUp.Invoke();
+        onLevelUp.Raise();
     }
 }

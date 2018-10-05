@@ -38,7 +38,7 @@ public class DisplayInventoryData : MonoBehaviour {
 	}
 
 	public void UpdateMoneyText(){
-		moneyText.text = "$" + inventory.money;
+		moneyText.text = "$" + inventory.money.ToString("0.00");
 	}
 }
 

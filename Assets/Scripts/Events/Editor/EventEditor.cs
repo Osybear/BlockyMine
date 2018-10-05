@@ -8,20 +8,17 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace RoboRyanTron.Unite2017.Events
+[CustomEditor(typeof(GameEvent))]
+public class EventEditor : Editor
 {
-    [CustomEditor(typeof(GameEvent))]
-    public class EventEditor : Editor
+    public override void OnInspectorGUI()
     {
-        public override void OnInspectorGUI()
-        {
-            base.OnInspectorGUI();
+        base.OnInspectorGUI();
 
-            GUI.enabled = Application.isPlaying;
+        GUI.enabled = Application.isPlaying;
 
-            GameEvent e = target as GameEvent;
-            if (GUILayout.Button("Raise"))
-                e.Raise();
-        }
+        GameEvent e = target as GameEvent;
+        if (GUILayout.Button("Raise"))
+            e.Raise();
     }
 }

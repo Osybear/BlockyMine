@@ -11,42 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4dcfae99d976e4f987a7dfe96f37d1, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  interactDistance: 25
+  fireRate: 1
+  interactDistance: 3.4028235e+38
   strength: 1
-  onUpdateExp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 7439abe513725874d8a72b3a2da973c7, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  onLevelUp:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: 0cccaf7395ab28c4eadb1bb994caf593, type: 2}
-        m_MethodName: Raise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  curLevel: 1
-  currExp: 24
+  curLevel: 0
+  currExp: 0
   expBase: 100
-  expLeft: 150
+  expLeft: 100
   expMod: 0.5
+  onUpdateExp: {fileID: 11400000, guid: 7439abe513725874d8a72b3a2da973c7, type: 2}
+  onLevelUp: {fileID: 11400000, guid: 0cccaf7395ab28c4eadb1bb994caf593, type: 2}
